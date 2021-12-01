@@ -13,22 +13,10 @@ internal class Day1
 
     internal void Run()
     {
-        DoPart1();
-        //DoPart2();
-
-    }
-
-    private void DoPart2()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void DoPart1()
-    {
         int? previousDepth = null;
-        for (int i = 1; i < input.Count-1; i++)
+        for (int i = 1; i < input.Count - 1; i++)
         {
-            int currentDepth = input[i-1]+input[i]+input[i+1];
+            int currentDepth = input[i - 1] + input[i] + input[i + 1];
 
             if (previousDepth is null)
             {
@@ -57,5 +45,6 @@ internal class Day1
         }
 
         Console.WriteLine($"Number of time greater than previous depth: {NumberOfTimesIncreased}");
+
     }
 }
