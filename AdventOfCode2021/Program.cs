@@ -8,6 +8,9 @@ if(int.TryParse(Console.ReadLine(), out int input))
         case 1:
             _ = new Day1();
             break;
+        case 2:
+            _ = new Day2();
+            break;
         default:
             break;
     }
