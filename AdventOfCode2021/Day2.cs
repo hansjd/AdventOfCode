@@ -1,52 +1,33 @@
 ﻿// See https://aka.ms/new-console-template for more information
-internal class Day2
+using System.ComponentModel;
+
+public class Day2
 {
     public Day2()
     {
-        List<Movement> input = File.ReadAllLines("Input/02.txt").Select(i => { 
+        List<Movement> input = File.ReadAllLines("Input/02.txt").Select(i =>
+        {
             string[] splitline = i.Split(' ');
-            return new Movement
-                {
-                    Direction = splitline[0],
-                    Distance = int.Parse(splitline[1])
-                }; 
-            }
+            return NewMethod(splitline);
+        }
         ).ToList();
 
-        int distance = 0;
-        int depth = 0;
-        int aim = 0;
+        Submarine submarine = new Submarine();
+
         foreach (Movement movement in input)
         {
-            switch (movement.Direction)
-            {
-                case "forward":
-
-                    distance += movement.Distance;
-                    depth = depth + movement.Distance*aim;
-                    break;
-                case "backward":
-                    distance -= movement.Distance;
-
-                    break;
-                case "up":
-                    aim -= movement.Distance;
-                    break;
-                case "down":
-                    aim += movement.Distance;
-                    break;
-                default:
-                    break;
-            }
+            submarine.Move(movement);
         }
 
-        Console.WriteLine($"horizontal distance = {distance}\ndepth = {depth}\naim = {aim}\nmultiply = {depth * distance}");
+        Console.WriteLine(submarine);
     }
 
-
-    private class Movement {
-        public string Direction { get; set; }
-
-        public int Distance { get; set; }
+    private static Movement NewMethod(string[] splitline)
+    {
+        return new Movement
+        {
+            Direction = (DirectionEnum)Enum.Parse(typeof(DirectionEnum), splitline[0], true),
+            Distance = int.Parse(splitline[1])
+        };
     }
 }
