@@ -17,6 +17,9 @@ if(int.TryParse(Console.ReadLine(), out int input))
         case 4:
             _ = new Day4();
             break;
+        case 5:
+            _ = new Day5();
+            break;
         default:
             break;
     }
